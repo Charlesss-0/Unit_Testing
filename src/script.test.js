@@ -1,6 +1,7 @@
 import { capitalize } from './script'
 import { reverseString } from './script'
 import { calculator } from './script'
+import { caesarCipher } from './script'
 
 test('capitalize first character', () => {
     expect(capitalize('string')).toBe('String')
@@ -17,4 +18,8 @@ test('calculate operations', () => {
     expect(calculate.subtract()).toBe(5)
     expect(calculate.multiply()).toBe(50)
     expect(calculate.divide()).toBe(2)
+})
+
+test('caesar cipher', () => {
+    expect(caesarCipher('h', 3)).toBe('a')
 })

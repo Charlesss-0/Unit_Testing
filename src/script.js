@@ -1,5 +1,5 @@
-export function capitalize(strg) {
-    return strg.slice(0, 1).toUpperCase() + strg.slice(1)
+export function capitalize(str) {
+    return str.slice(0, 1).toUpperCase() + str.slice(1)
 }
 
 export function reverseString(str) {
@@ -34,4 +34,27 @@ export function calculator(a, b) {
             return a / b
         }
     }
+}
+
+export function caesarCipher(message, shit) {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
+
+    let result = ''
+
+    for (let char of alphabet) {
+        if (char.includes(message)) {
+            let index = alphabet.find(char)
+            index = (index + shit) % alphabet.length
+
+            if (index < 0) {
+                index = index + alphabet.length
+            }
+
+            result = result + alphabet[index]
+        } else {
+            result = result + char
+        }
+    }
+
+    return result
 }
