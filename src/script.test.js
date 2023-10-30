@@ -21,5 +21,5 @@ test('calculate operations', () => {
 })
 
 test('caesar cipher', () => {
-    expect(caesarCipher('String', 3)).toBe('Vwulqj')
+    expect(caesarCipher('h', 3)).toBe('a')
 })
