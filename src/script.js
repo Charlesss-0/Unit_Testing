@@ -1,16 +1,20 @@
 // Capitalize first letter
 export function capitalize(str) {
+    // Convert first character to uppercase and leave the rest unchanged
     return str.slice(0, 1).toUpperCase() + str.slice(1)
 }
 
 // Reverse string function
 export function reverseString(str) {
+    // Initialize an empty string to store the reversed string
     let newStrg = ''
 
+    // Loop through the input string starting at index -1
     for (let i = str.length - 1; i >= 0; i--) {
         newStrg += str[i]
     }
 
+    // Return the new reversed string
     return newStrg
 }
 
@@ -44,39 +48,49 @@ export function caesarCipher(message, shift) {
     for (let i = 0; i < message.length; i++) {
         const character = message[i]
 
-        if (/[a-zA-Z]/.test(character)) {
-            // Determine whether it's an uppercase or lowercase letter
-            const isUppercase = character === character.toUpperCase()
-
-            // Apply the Caesar Cipher shift to the letter
-            let shiftedCharacter = character.charCodeAt(0) + shift
-
-            // Ensure the shifted character wraps around the alphabet
-            if (isUppercase) {
-                if (shiftedCharacter > 'Z'.charCodeAt(0)) {
-                    shiftedCharacter -= 26
-                } else if (shiftedCharacter < 'A'.charCodeAt(0)) {
-                    shiftedCharacter += 26
-                }
-            } else {
-                if (shiftedCharacter > 'z'.charCodeAt(0)) {
-                    shiftedCharacter -= 26
-                } else if (shiftedCharacter < 'a'.charCodeAt(0)) {
-                    shiftedCharacter += 26
-                }
-            }
-
-            // Convert the shifted character back to a letter
-            shiftedCharacter = String.fromCharCode(shiftedCharacter)
-
-            // Add the shifted character to the result
-            result += shiftedCharacter
-        } else {
-            // If the character is not a letter, leave it unchanged
-            result += character
-        }
+        // Call shifter function to concatenate its result to the result string
+        result += shifter(character, shift)
     }
 
     // Return the result
     return result
+}
+
+function shifter(character, shift) {
+    const regex = /[a-zA-Z]/
+
+    if (regex.test(character)) {
+        // Check if character is uppercase
+        const isUppercase = character === character.toUpperCase()
+
+        // Apply the shift to the character
+        let shiftedCharacter = character.charCodeAt(0) + shift
+
+        // Call wrap function to handle wrapping
+        wrap(isUppercase, shiftedCharacter)
+
+        // Convert the shifted character back to a string
+        shiftedCharacter = String.fromCharCode(shiftedCharacter)
+
+        return shiftedCharacter
+    } else {
+        return character
+    }
+}
+
+function wrap(isUppercase, shiftedCharacter) {
+    switch (isUppercase) {
+        case shiftedCharacter > 'Z'.charCodeAt(0):
+            shiftedCharacter -= 26
+            break
+        case shiftedCharacter < 'A'.charCodeAt(0):
+            shiftedCharacter += 26
+            break
+        case shiftedCharacter > 'z'.charCodeAt(0):
+            shiftedCharacter -= 26
+            break
+        case shiftedCharacter < 'a'.charCodeAt(0):
+            shiftedCharacter += 26
+            break
+    }
 }

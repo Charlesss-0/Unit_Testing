@@ -3,14 +3,14 @@ import { reverseString } from './script'
 import { calculator } from './script'
 import { caesarCipher } from './script'
 
-const body = document.querySelector('body')
-const h1 = document.createElement('h1')
+const capitalized = capitalize('javascript')
+console.log(`Capitalized word: ${capitalized}`)
 
-h1.innerHTML = capitalize('javascript\n')
-h1.innerHTML += reverseString('hello')
+const reversed = reverseString('javascript')
+console.log(`Reversed word: ${reversed}`)
 
-const calculate = calculator(5, 3)
+const calculate = calculator(5, 20)
+console.log(`Operation result: ${calculate.multiply()}`)
 
-h1.innerHTML += '\n' + calculate.multiply()
-
-body.append(h1)
+const encryptedText = caesarCipher('Hello World', 3)
+console.log(`Encrypted Text: ${encryptedText}`)
