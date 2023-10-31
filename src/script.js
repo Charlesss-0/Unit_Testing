@@ -56,6 +56,7 @@ export function caesarCipher(message, shift) {
     return result
 }
 
+// Apply shifting actions
 function shifter(character, shift) {
     const regex = /[a-zA-Z]/
 
@@ -78,6 +79,7 @@ function shifter(character, shift) {
     }
 }
 
+// Wrap around the alphabet
 function wrap(isUppercase, shiftedCharacter) {
     switch (isUppercase) {
         case shiftedCharacter > 'Z'.charCodeAt(0):
@@ -91,6 +93,45 @@ function wrap(isUppercase, shiftedCharacter) {
             break
         case shiftedCharacter < 'a'.charCodeAt(0):
             shiftedCharacter += 26
-            break
+    }
+}
+
+// Analyze array function
+export function analyzeArray(arr) {
+    // Initialize empty object to store the result
+    const obj = {
+        average: null,
+        min: null,
+        max: null,
+        length: null
+    }
+
+    // Loops through obj and returns its corresponding values
+    for (let i = 0; i < arr.length; i++) {
+        getAverage(arr, i, obj)
+        getMinMax(arr, i, obj)
+    }
+
+    return obj
+}
+
+// Get the average value
+function getAverage(arr, i, obj) {
+    // Checks if obj.average or obj.length are falsy to return true
+    // and get the average and length of the array
+    if (!obj.average || !obj.length) {
+        obj.average = parseInt(arr[i] / 2)
+        obj.length = arr.length
+    }
+}
+
+// Get the min and max value
+function getMinMax(arr, i, obj) {
+    // Checks if obj.min or obj.max are falsy to return true
+    // and get the min and max value
+    if (!obj.min || arr[i] < obj.min) {
+        obj.min = arr[i]
+    } else if (!obj.max || arr[i] > obj.max) {
+        obj.max = arr[i]
     }
 }

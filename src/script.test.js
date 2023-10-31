@@ -2,16 +2,17 @@ import { capitalize } from './script'
 import { reverseString } from './script'
 import { calculator } from './script'
 import { caesarCipher } from './script'
+import { analyzeArray } from './script'
 
-test('capitalize first character', () => {
+test('Capitalize first character', () => {
     expect(capitalize('string')).toBe('String')
 })
 
-test('reverse string', () => {
+test('Reverse String', () => {
     expect(reverseString('string')).toBe('gnirts')
 })
 
-test('calculate operations', () => {
+test('Calculate', () => {
     const calculate = calculator(10, 5)
 
     expect(calculate.add()).toBe(15)
@@ -20,6 +21,18 @@ test('calculate operations', () => {
     expect(calculate.divide()).toBe(2)
 })
 
-test('caesar cipher', () => {
-    expect(caesarCipher('a', 3)).toBe('d')
+test('Caesar Cipher', () => {
+    const encryptedText = 'Hello'
+    expect(caesarCipher(encryptedText, 3)).toBe('Khoor')
+})
+
+test('Anaylize Array', () => {
+    const arr = [1, 8, 3, 4, 2, 6]
+    const obj = {
+        average: 4,
+        min: 1,
+        max: 8,
+        length: 6
+    }
+    expect(analyzeArray(arr)).toStrictEqual(obj)
 })
